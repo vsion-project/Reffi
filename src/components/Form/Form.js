@@ -11,16 +11,10 @@ const Form = () => {
   )
   const [Amount, setAmount] = useState(0)
   const [Aprove, setAprove] = useState(true)
-  const SellContract = "0x62e435FFf6a970ED5462965b4Ec89f4B41254bb6";
+  const SellContract = '0x62e435FFf6a970ED5462965b4Ec89f4B41254bb6'
   let web3 = new Web3(Provider)
-  let erc20 = new web3.eth.Contract(
-    ERC20,
-    SelecToken,
-  )
-  let MarketContract = new web3.eth.Contract(
-    REfiAbi.abi,
-    SellContract,
-  )
+  let erc20 = new web3.eth.Contract(ERC20, SelecToken)
+  let MarketContract = new web3.eth.Contract(REfiAbi.abi, SellContract)
   useEffect(() => {
     MarketContract.methods
       .TotalSelling()
@@ -33,7 +27,7 @@ const Form = () => {
         .then((r) => {
           r > 0 ? setAprove(false) : setAprove(true)
         })
-        console.log("address")
+      console.log('address')
     }
   }, [address, SelecToken])
 
@@ -52,10 +46,7 @@ const Form = () => {
     })
 
     erc20.methods
-      .approve(
-        SellContract,
-        '999999999000000000000000000',
-      )
+      .approve(SellContract, '999999999000000000000000000')
       .send({ from: address })
       .then((r) => {
         if (r.status == true) {
@@ -71,27 +62,27 @@ const Form = () => {
 
   function BuyReffi() {
     Swal.fire({
-        title: 'Por favor Espera',
-        html: 'Transacción Enviada',
-        timerProgressBar: true,
-        allowOutsideClick: false,
-        allowEnterKey: false,
-        allowEscapeKey: false,
-        didOpen: () => {
-          Swal.showLoading()
-        },
-      })
+      title: 'Por favor Espera',
+      html: 'Transacción Enviada',
+      timerProgressBar: true,
+      allowOutsideClick: false,
+      allowEnterKey: false,
+      allowEscapeKey: false,
+      didOpen: () => {
+        Swal.showLoading()
+      },
+    })
     let amount = web3.utils.toWei(Amount.toString(), 'ether')
     MarketContract.methods
       .BuyReffi(SelecToken, amount)
       .send({ from: address })
-      .then(r=>{
+      .then((r) => {
         Swal.fire({
-            icon: 'success',
-            title: 'Tokens Comprados',
-            footer: `<a style="margin-right:15px;" className="btn btn-primary" href="${`https://bscscan.com/tx/${r.transactionHash}`}" target="__blank">Ver TX</a> `,
-          })
-          setAmount(0)
+          icon: 'success',
+          title: 'Tokens Comprados',
+          footer: `<a style="margin-right:15px;" className="btn btn-primary" href="${`https://bscscan.com/tx/${r.transactionHash}`}" target="__blank">Ver TX</a> `,
+        })
+        setAmount(0)
       })
       .catch()
   }
@@ -169,9 +160,14 @@ const Form = () => {
                   </div>
                 </fieldset>
               </div>
-              <a href="#!" onClick={() => (Aprove ? AproveToken() : BuyReffi())}>
-                {Aprove ? 'Aprobar Token' : `Comprar Reffi`}
-              </a>
+              {address && (
+                <a
+                  href="#!"
+                  onClick={() => (Aprove ? AproveToken() : BuyReffi())}
+                >
+                  {Aprove ? 'Aprobar Token' : `Comprar Reffi`}
+                </a>
+              )}
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12">
