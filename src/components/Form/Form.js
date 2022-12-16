@@ -11,7 +11,7 @@ const Form = () => {
   )
   const [Amount, setAmount] = useState(0)
   const [Aprove, setAprove] = useState(true)
-  const SellContract = '0x8A1eA6786cA8d5AEc69B010B18DeD4684f5eA05B'
+  const SellContract = '0x45c500d71fE318a57C9C0a5ee6E7a19e242afE46'
   let web3 = new Web3(Provider)
   let erc20 = new web3.eth.Contract(ERC20, SelecToken)
   let MarketContract = new web3.eth.Contract(REfiAbi.abi, SellContract)
@@ -27,7 +27,6 @@ const Form = () => {
         .then((r) => {
           r > 0 ? setAprove(false) : setAprove(true)
         })
-      console.log('address')
     }
   }, [address, SelecToken])
 
