@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './App.css'
+import Nabvar from './components/Nabvar/Nabvar'
+import Hero from './components/Hero/Hero'
+import Form from './components/Form/Form'
+import WallectConnect from './components/Providers/Wallet'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <WallectConnect>
+      <Nabvar />
+      <Hero />
+      <Form />
+    </WallectConnect>
+  )
 }
 
-export default App;
+export default App

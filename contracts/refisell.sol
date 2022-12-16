@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "hardhat/console.sol";
+
 contract REFFISELL is ReentrancyGuard, Ownable {
     using SafeMath for uint256;
     uint256 phase = 1;
@@ -14,8 +15,8 @@ contract REFFISELL is ReentrancyGuard, Ownable {
     bool _lock;
     address WalletDindon;
     bool ActiveWhiteList;
-    uint256 PhaseSelling;
-    uint256 TotalSelling;
+    uint256 public PhaseSelling;
+    uint256 public TotalSelling;
     IERC20 Reffi;
     IERC20 Vsion;
     mapping(address => bool) private WhiteList;
@@ -31,7 +32,7 @@ contract REFFISELL is ReentrancyGuard, Ownable {
         uint256 amount;
     }
 
-    constructor(address _criptovision, address _refi,address _walletDindon) {
+    constructor(address _criptovision, address _refi, address _walletDindon) {
         WalletDindon = _walletDindon;
         Reffi = IERC20(_refi);
         Vsion = IERC20(_criptovision);
@@ -55,6 +56,7 @@ contract REFFISELL is ReentrancyGuard, Ownable {
     function ChangeActivateWhiteList() public onlyOwner {
         ActiveWhiteList = !ActiveWhiteList;
     }
+
     function AddPhase(
         uint256 _phase,
         uint256 _price,
@@ -65,6 +67,7 @@ contract REFFISELL is ReentrancyGuard, Ownable {
 
     function ChangePhase(uint256 _number) public onlyOwner {
         phase = _number;
+        PhaseSelling=0;
     }
 
     function AddWhiteList(address _address) public onlyOwner {
@@ -99,7 +102,8 @@ contract REFFISELL is ReentrancyGuard, Ownable {
 
         Phases memory phaseInfo = PhasesList[phase];
 
-        uint256 _percet = GetDiscountVsionHolder(msg.sender, _amount);
+        uint256 _percent = GetPercentVsionHolder(msg.sender, _amount);
+        uint256 _price = GetPriceVsionHolder(msg.sender, phaseInfo.price);
 
         if (ActiveWhiteList)
             require(WhiteList[msg.sender], "You are not in WhiteList");
@@ -109,29 +113,25 @@ contract REFFISELL is ReentrancyGuard, Ownable {
             "Balance To Low"
         );
 
-        uint256 ReffiAmount = ((_amount / phaseInfo.price) / 100) * _percet;
+        uint256 ReffiAmount = _amount / _price;
+        uint256 totalReffiBuy = (((ReffiAmount / 100) * _percent) + ReffiAmount)*10**18;
 
-        console.log(ReffiAmount,_amount,phaseInfo.price,_percet);
+        PhaseSelling += _amount;
 
-        PhaseSelling+=_amount;
-
-        TotalSelling+=_amount;
+        TotalSelling += _amount;
 
         if (phaseInfo.amount == PhaseSelling) {
             phase += 1;
-            PhaseSelling+=0;
+            PhaseSelling += 0;
         }
 
         require(
             IERC20(_token).transferFrom(msg.sender, WalletDindon, _amount),
             "Error in Transfer"
         );
-        require(
-            Reffi.transferFrom(address(this), msg.sender, ReffiAmount),
-            "Error in Transfer"
-        );
+        require(Reffi.transfer(msg.sender, totalReffiBuy), "Error in Transfer");
 
-        emit ReffiBuyed(msg.sender,ReffiAmount);
+        emit ReffiBuyed(msg.sender, ReffiAmount);
     }
 
     function addPhases() public {
@@ -141,43 +141,64 @@ contract REFFISELL is ReentrancyGuard, Ownable {
         PhasesList[4] = Phases(250000000000000000, 2625000 ether);
     }
 
-    function GetDiscountVsionHolder(
+    function GetPercentVsionHolder(
         address _user,
         uint256 _amount
     ) internal view returns (uint256 percent) {
         uint256 balanceVsion = Vsion.balanceOf(_user);
+        balanceVsion = balanceVsion / 10 ** 8;
+        _amount = _amount / 10 ** 18;
+        uint256 _percent = 0;
         // 10 a 50 usdt un 25 % adiciinal.
         // 51 a 100 usdt un 50% adicional.
         // 101 a 1000 USDT 100 %
         // 1001 a 10000 USDT  200 %
 
-        // OJO!! debes agregar aqui el precio -0.05 usdt a los vsioners
-        if (balanceVsion > 1 * 10 ** 8) {
-            if (balanceVsion < 250000 * 10 ** 8 && _amount < 50 * 10 ** 18) {
-                return 25;
+        if (balanceVsion > 1) {
+            if (balanceVsion >= 250000 && _amount >= 50) {
+                _percent = 25;
             }
 
             if (
-                balanceVsion < 500000 * 10 ** 8 &&
-                _amount > 50 * 10 ** 18 &&
-                _amount < 100 * 10 ** 18
+                balanceVsion >= 500000 &&
+                _amount >= 100 
             ) {
-                return 50;
+                _percent = 50;
             }
 
             if (
-                balanceVsion < 1000000 * 10 ** 8 &&
-                _amount > 100 * 10 ** 18 &&
-                _amount < 1000 * 10 ** 18
+                balanceVsion >= 500001 &&
+                balanceVsion <= 1000000 &&
+                _amount >= 1000
             ) {
-                return 100;
+                _percent = 100;
             }
 
-            if (balanceVsion > 1000000 * 10 ** 8 && _amount > 1000 * 10 ** 18) {
-                return 200;
+            if (
+                balanceVsion >= 1000000 && _amount >= 1000
+            ) {
+                _percent = 150;
+            }
+
+            if (
+                balanceVsion >= 1000000 && _amount >= 5000
+            ) {
+                _percent = 200;
             }
         }
-
-        return 0;
+        return _percent;
     }
+
+    function GetPriceVsionHolder(
+        address _user,
+        uint256 _price
+    ) internal view returns (uint256) {
+        uint256 balanceVsion = Vsion.balanceOf(_user);
+        uint256 NewPrice = _price;
+        if (balanceVsion > 1 * 10 ** 8) {
+            NewPrice = _price.sub(0.05 ether);
+        }
+        return NewPrice;
+    }
+
 }
