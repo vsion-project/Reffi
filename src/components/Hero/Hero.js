@@ -16,7 +16,7 @@ const Hero = () => {
                         <br/>
 					</div>
 					<div class="hero-button">
-						<a href="#">Buy Now</a>
+						<a href="#buy">Buy Now</a>
 					</div>
 				</div>
                 <div class="dreamit-hero-thumb">

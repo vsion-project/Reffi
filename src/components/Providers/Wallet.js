@@ -39,20 +39,20 @@ const WallectConnect = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const setWalletAddress = async (provider) => {
-    try {
-      const signer = provider.getSigner()
-      if (signer) {
-        const web3Address = await signer.getAddress()
-        setAddress(web3Address)
-        getBalance(provider, web3Address)
-      }
-    } catch (error) {
-      console.log(
-        'Account not connected; logged from setWalletAddress function',
-      )
-    }
-  }
+  // const setWalletAddress = async (provider) => {
+  //   try {
+  //     const signer = provider.getSigner()
+  //     if (signer) {
+  //       const web3Address = await signer.getAddress()
+  //       setAddress(web3Address)
+  //       getBalance(provider, web3Address)
+  //     }
+  //   } catch (error) {
+  //     console.log(
+  //       'Account not connected; logged from setWalletAddress function',
+  //     )
+  //   }
+  // }
 
   const getBalance = async (connection, walletAddress) => {
     const provider = new ethers.providers.Web3Provider(connection)

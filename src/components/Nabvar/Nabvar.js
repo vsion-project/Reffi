@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { WalletContext } from '../Providers/Wallet'
 
 const Nabvar = () => {
-  const { address, Provider, connectToWallet } = useContext(WalletContext)
+  const { address, connectToWallet } = useContext(WalletContext)
 
   return (
     <div id="sticky-header" class="cryptobit_nav_manu">

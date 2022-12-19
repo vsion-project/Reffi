@@ -1,3 +1,4 @@
+import { ethers } from 'ethers'
 import React, { useContext, useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import Web3 from 'web3'
@@ -10,16 +11,38 @@ const Form = () => {
     '0x55d398326f99059fF775485246999027B3197955',
   )
   const [Amount, setAmount] = useState(0)
+  const [Phase, setPhase] = useState(0)
+  const [Price, setPrice] = useState(0)
+  const [TotalSelling, setTotalSelling] = useState(0)
+  const [Vsion, setVsion] = useState(0)
+  const [Reffi, setReffi] = useState(0)
   const [Aprove, setAprove] = useState(true)
   const SellContract = '0x45c500d71fE318a57C9C0a5ee6E7a19e242afE46'
   let web3 = new Web3(Provider)
   let erc20 = new web3.eth.Contract(ERC20, SelecToken)
+  let VsionToken = new web3.eth.Contract(
+    ERC20,
+    '0x4BBD4fa12b2B874A13e9555F5C5d0F6aD035ACc3',
+  )
+  let ReffiToken = new web3.eth.Contract(
+    ERC20,
+    '0xeAF52bBE7694388c1f1c351be1908Db28F5451a8',
+  )
   let MarketContract = new web3.eth.Contract(REfiAbi.abi, SellContract)
   useEffect(() => {
     MarketContract.methods
       .TotalSelling()
       .call()
-      .then((r) => console.log(r))
+      .then((r) => setTotalSelling(Web3.utils.fromWei(r, 'ether')))
+    MarketContract.methods
+      .getPhase()
+      .call()
+      .then((r) => setPhase(r))
+    MarketContract.methods
+      .getPhasePrice()
+      .call()
+      .then((r) => setPrice(Web3.utils.fromWei(r, 'ether')))
+
     if (address) {
       erc20.methods
         .allowance(address, SellContract)
@@ -27,7 +50,16 @@ const Form = () => {
         .then((r) => {
           r > 0 ? setAprove(false) : setAprove(true)
         })
+      VsionToken.methods
+        .balanceOf(address)
+        .call()
+        .then((r) => setVsion(ethers.utils.parseUnits(r, '8').toString()))
+      ReffiToken.methods
+        .balanceOf(address)
+        .call()
+        .then((r) => setReffi(Web3.utils.fromWei(r, 'ether')))
     }
+    // eslint-disable-next-line
   }, [address, SelecToken])
 
   const AproveToken = () => {
@@ -48,7 +80,7 @@ const Form = () => {
       .approve(SellContract, '999999999000000000000000000')
       .send({ from: address })
       .then((r) => {
-        if (r.status == true) {
+        if (r.status === true) {
           setAprove(false)
           Swal.fire({
             icon: 'success',
@@ -108,17 +140,25 @@ const Form = () => {
             </div>
           </div>
         </div>
-        <div class="row service-bg">
+        <div class="row service-bg" id="buy">
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="dreamit-section-title style-two">
-              <h1>Preventa Token Reffi</h1>
-              {/* <p class="service-text">Fase Actual: 1</p>
-              <p class="service-text">Precio por Reffi: 0.1</p> */}
+              <h1>PREVENTA {Phase}</h1>
+              <p
+                class="service-text"
+                style={{ marginBottom: 0 }}
+                dangerouslySetInnerHTML={{
+                  __html: `1 Reffi = ${
+                    Vsion > 0 ? `<del>${Price}</del> ${Price - 0.05}` : Price
+                  }`,
+                }}
+              ></p>
+              <p class="service-text">Total Recaudado : {TotalSelling}</p>
             </div>
             <div class="about-button2">
               <div class="form-horizontal">
                 <fieldset>
-                  <div class="form-group" style={{ marginTop: 30 }}>
+                  <div class="form-group">
                     <label class="col-md-8 control-label" for="selectbasic">
                       Selecciona Token:
                     </label>
@@ -168,6 +208,9 @@ const Form = () => {
                 </a>
               )}
             </div>
+            <p class="service-text" style={{ color: '#fff' }}>
+              Tienes Reffi : {Reffi}
+            </p>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="service-single-thumb">
