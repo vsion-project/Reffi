@@ -208,9 +208,11 @@ const Form = () => {
                 </a>
               )}
             </div>
-            <p class="service-text" style={{ color: '#fff' }}>
-              Tienes Reffi : {Reffi}
-            </p>
+            {address && (
+              <p class="service-text" style={{ color: '#fff' }}>
+                Tienes Reffi : {Reffi}
+              </p>
+            )}
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="service-single-thumb">
