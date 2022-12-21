@@ -36,6 +36,9 @@ contract REFFISELL is ReentrancyGuard, Ownable {
         WalletDindon = _walletDindon;
         Reffi = IERC20(_refi);
         Vsion = IERC20(_criptovision);
+        addPhases();
+        TokensAccept[0x55d398326f99059fF775485246999027B3197955] = true;
+        TokensAccept[0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56] = true;
     }
 
     modifier ContractLock() {
@@ -90,9 +93,9 @@ contract REFFISELL is ReentrancyGuard, Ownable {
         return PhasesList[phase].amount;
     }
 
-    /*function ChangeWalletLiquidity(address _address) public onlyOwner{
-        WalletLiquidity=_address;
-    }*/
+    function ChangeWalletLiquidity(address _address) public onlyOwner{
+        WalletDindon=_address;
+    }
 
     function BuyReffi(
         address _token,
@@ -116,7 +119,7 @@ contract REFFISELL is ReentrancyGuard, Ownable {
         uint256 ReffiAmount = _amount / _price;
         uint256 totalReffiBuy = (((ReffiAmount / 100) * _percent) + ReffiAmount)*10**18;
 
-        PhaseSelling += _amount;
+        PhaseSelling += totalReffiBuy;
 
         TotalSelling += _amount;
 
@@ -169,7 +172,7 @@ contract REFFISELL is ReentrancyGuard, Ownable {
             if (
                 balanceVsion >= 500001 &&
                 balanceVsion <= 1000000 &&
-                _amount >= 1000
+                _amount >= 500
             ) {
                 _percent = 100;
             }
@@ -183,6 +186,25 @@ contract REFFISELL is ReentrancyGuard, Ownable {
             if (
                 balanceVsion >= 1000000 && _amount >= 5000
             ) {
+                _percent = 200;
+            }
+        }else{
+            if (_amount >= 50) {
+                _percent = 25;
+            }
+
+            if ( _amount >= 100 ) {
+                _percent = 50;
+            }
+
+            if (_amount >= 500) {
+                _percent = 100;
+            }
+
+            if ( _amount >= 1000) {
+                _percent = 150;
+            }
+            if ( _amount >= 5000) {
                 _percent = 200;
             }
         }
@@ -199,6 +221,10 @@ contract REFFISELL is ReentrancyGuard, Ownable {
             NewPrice = _price.sub(0.05 ether);
         }
         return NewPrice;
+    }
+
+    function RecoverTokens (address _token) public onlyOwner{
+        IERC20(_token).transfer(owner(),IERC20(_token).balanceOf(address(this)));
     }
 
 }

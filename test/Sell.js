@@ -167,7 +167,7 @@ describe("Reffi Presale", function () {
         it("Buy Tokens Reffi Account7 No Vsion Holder", async function () {
             const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=10000;
+            let usdtamount=1000;
 
             TotalSelling+=usdtamount;
 
@@ -178,7 +178,7 @@ describe("Reffi Presale", function () {
 
             let ReffiBuyed = await reffi.balanceOf(account7.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("100000"));
+            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("250000"));
         });
 
 
