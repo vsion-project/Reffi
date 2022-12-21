@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Web3 from 'web3';
 import REfiAbi from '../artifacts/contracts/refisell.sol/REFFISELL.json';
-import ERC20 from '../Abis/ERC20.json';
+import ERC20 from './ERC20.json';
 import { WalletContext } from '../Providers/Wallet';
 const Form = () => {
   const { address, Provider } = useContext(WalletContext)
