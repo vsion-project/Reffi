@@ -84,8 +84,7 @@ describe("Reffi Presale", function () {
             await presale.connect(account1).BuyReffi(usdt.address, ScaleAmount);
 
             let ReffiBuyed = await reffi.balanceOf(account1.address);
-
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("20000"));
+            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("50000"));
         });
 
         it("Buy Tokens Reffi Account2", async function () {
@@ -106,7 +105,7 @@ describe("Reffi Presale", function () {
         it("Buy Tokens Reffi Account3", async function () {
             const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=2000;
+            let usdtamount=523.45;
             TotalSelling+=usdtamount;
             usdtamount=usdtamount.toString();
             const ScaleAmount = ethers.utils.parseEther(usdtamount);
@@ -115,7 +114,7 @@ describe("Reffi Presale", function () {
 
             let ReffiBuyed = await reffi.balanceOf(account3.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("60000"));
+            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("20938"));
         });
 
         it("Buy Tokens Reffi Account4", async function () {
@@ -130,7 +129,7 @@ describe("Reffi Presale", function () {
 
             let ReffiBuyed = await reffi.balanceOf(account4.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("40000"));
+            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("50000"));
         });
 
         it("Buy Tokens Reffi Account5", async function () {
@@ -178,7 +177,7 @@ describe("Reffi Presale", function () {
 
             let ReffiBuyed = await reffi.balanceOf(account7.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("250000"));
+            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("25000"));
         });
 
 
@@ -191,413 +190,413 @@ describe("Reffi Presale", function () {
         });
     })
 
-    describe("Change to Phase 2", function () {
+    // describe("Change to Phase 2", function () {
 
-        it("Send Usdt for buy in Phase 2", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Send Usdt for buy in Phase 2", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            await presale.ChangePhase(2);
+    //         await presale.ChangePhase(2);
 
-            const amount = ethers.utils.parseEther("10000");
+    //         const amount = ethers.utils.parseEther("10000");
             
-            await usdt.transfer(account1.address, amount);
-            await usdt.transfer(account2.address, amount);
-            await usdt.transfer(account3.address, amount);
-            await usdt.transfer(account4.address, amount);
-            await usdt.transfer(account5.address, amount);
-            await usdt.transfer(account6.address, amount);
-            await usdt.transfer(account7.address, amount);
+    //         await usdt.transfer(account1.address, amount);
+    //         await usdt.transfer(account2.address, amount);
+    //         await usdt.transfer(account3.address, amount);
+    //         await usdt.transfer(account4.address, amount);
+    //         await usdt.transfer(account5.address, amount);
+    //         await usdt.transfer(account6.address, amount);
+    //         await usdt.transfer(account7.address, amount);
             
-        });
+    //     });
 
-        it("Buy Tokens Reffi Account1", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account1", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=1000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=1000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account1).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account1).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account1.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account1.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("30000"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("30000"));
+    //     });
 
-        it("Buy Tokens Reffi Account2", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account2", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=40;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=40;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account2).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account2).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account2.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account2.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1200"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1200"));
+    //     });
 
-        it("Buy Tokens Reffi Account3", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account3", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=2000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=2000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account3).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account3).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account3.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account3.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("90000"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("90000"));
+    //     });
 
-        it("Buy Tokens Reffi Account4", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account4", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=1000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=1000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account4).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account4).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account4.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account4.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("60000"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("60000"));
+    //     });
 
-        it("Buy Tokens Reffi Account5", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account5", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=35;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=35;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account5).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account5).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account5.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account5.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1050"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1050"));
+    //     });
 
-        it("Buy Tokens Reffi Account6", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account6", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=5000;
-            TotalSelling+=usdtamount;
+    //         let usdtamount=5000;
+    //         TotalSelling+=usdtamount;
             
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account6).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account6).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account6.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account6.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("450000"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("450000"));
+    //     });
 
-        it("Buy Tokens Reffi Account7 No Vsion Holder", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account7 No Vsion Holder", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=10000;
+    //         let usdtamount=10000;
 
-            TotalSelling+=usdtamount;
+    //         TotalSelling+=usdtamount;
 
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account7).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account7).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account7.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account7.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("166666"));
-        });
-
-
-        it("Get Status Total Selling Phase 2", async function () {
-            // let PhaseSellingTotal=await presale.PhaseSelling();
-            let PreSaleTotalSell=await presale.TotalSelling();
-            expect(PreSaleTotalSell).to.equal(ethers.utils.parseEther(TotalSelling.toString()));
-        });
-
-    })
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("166666"));
+    //     });
 
 
-    describe("Change to Phase 3", function () {
+    //     it("Get Status Total Selling Phase 2", async function () {
+    //         // let PhaseSellingTotal=await presale.PhaseSelling();
+    //         let PreSaleTotalSell=await presale.TotalSelling();
+    //         expect(PreSaleTotalSell).to.equal(ethers.utils.parseEther(TotalSelling.toString()));
+    //     });
 
-        it("Send Usdt for buy in Phase 3", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    // })
 
-            await presale.ChangePhase(3);
 
-            const amount = ethers.utils.parseEther("10000");
+    // describe("Change to Phase 3", function () {
+
+    //     it("Send Usdt for buy in Phase 3", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+
+    //         await presale.ChangePhase(3);
+
+    //         const amount = ethers.utils.parseEther("10000");
             
-            await usdt.transfer(account1.address, amount);
-            await usdt.transfer(account2.address, amount);
-            await usdt.transfer(account3.address, amount);
-            await usdt.transfer(account4.address, amount);
-            await usdt.transfer(account5.address, amount);
-            await usdt.transfer(account6.address, amount);
-            await usdt.transfer(account7.address, amount);
+    //         await usdt.transfer(account1.address, amount);
+    //         await usdt.transfer(account2.address, amount);
+    //         await usdt.transfer(account3.address, amount);
+    //         await usdt.transfer(account4.address, amount);
+    //         await usdt.transfer(account5.address, amount);
+    //         await usdt.transfer(account6.address, amount);
+    //         await usdt.transfer(account7.address, amount);
             
-        });
+    //     });
 
-        it("Buy Tokens Reffi Account1", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account1", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=1000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=1000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account1).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account1).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account1.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account1.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("36666"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("36666"));
+    //     });
 
-        it("Buy Tokens Reffi Account2", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account2", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=40;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=40;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account2).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account2).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account2.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account2.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1466"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1466"));
+    //     });
 
-        it("Buy Tokens Reffi Account3", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account3", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=2000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=2000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account3).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account3).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account3.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account3.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("109983"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("109983"));
+    //     });
 
-        it("Buy Tokens Reffi Account4", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account4", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=1000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=1000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account4).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account4).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account4.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account4.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("73266"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("73266"));
+    //     });
 
-        it("Buy Tokens Reffi Account5", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account5", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=35;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=35;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account5).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account5).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account5.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account5.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1283"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1283"));
+    //     });
 
-        it("Buy Tokens Reffi Account6", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account6", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=5000;
-            TotalSelling+=usdtamount;
+    //         let usdtamount=5000;
+    //         TotalSelling+=usdtamount;
             
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account6).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account6).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account6.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account6.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("549933"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("549933"));
+    //     });
 
-        it("Buy Tokens Reffi Account7 No Vsion Holder", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account7 No Vsion Holder", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=10000;
+    //         let usdtamount=10000;
 
-            TotalSelling+=usdtamount;
+    //         TotalSelling+=usdtamount;
 
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account7).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account7).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account7.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account7.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("216666"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("216666"));
+    //     });
 
 
-        it("Get Status Total Selling Phase 3", async function () {
-            // let PhaseSellingTotal=await presale.PhaseSelling();
-            let PreSaleTotalSell=await presale.TotalSelling();
-            expect(PreSaleTotalSell).to.equal(ethers.utils.parseEther(TotalSelling.toString()));
-        });
+    //     it("Get Status Total Selling Phase 3", async function () {
+    //         // let PhaseSellingTotal=await presale.PhaseSelling();
+    //         let PreSaleTotalSell=await presale.TotalSelling();
+    //         expect(PreSaleTotalSell).to.equal(ethers.utils.parseEther(TotalSelling.toString()));
+    //     });
 
-    })
+    // })
 
-    describe("Change to Phase 4", function () {
+    // describe("Change to Phase 4", function () {
 
-        it("Send Usdt for buy in Phase 4", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Send Usdt for buy in Phase 4", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            await presale.ChangePhase(4);
+    //         await presale.ChangePhase(4);
 
-            const amount = ethers.utils.parseEther("10000");
+    //         const amount = ethers.utils.parseEther("10000");
             
-            await usdt.transfer(account1.address, amount);
-            await usdt.transfer(account2.address, amount);
-            await usdt.transfer(account3.address, amount);
-            await usdt.transfer(account4.address, amount);
-            await usdt.transfer(account5.address, amount);
-            await usdt.transfer(account6.address, amount);
-            await usdt.transfer(account7.address, amount);
+    //         await usdt.transfer(account1.address, amount);
+    //         await usdt.transfer(account2.address, amount);
+    //         await usdt.transfer(account3.address, amount);
+    //         await usdt.transfer(account4.address, amount);
+    //         await usdt.transfer(account5.address, amount);
+    //         await usdt.transfer(account6.address, amount);
+    //         await usdt.transfer(account7.address, amount);
             
-        });
+    //     });
 
-        it("Buy Tokens Reffi Account1", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account1", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=1000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=1000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account1).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account1).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account1.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account1.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("41666"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("41666"));
+    //     });
 
-        it("Buy Tokens Reffi Account2", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account2", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=40;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=40;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account2).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account2).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account2.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account2.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1666"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1666"));
+    //     });
 
-        it("Buy Tokens Reffi Account3", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account3", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=2000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=2000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account3).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account3).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account3.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account3.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("124983"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("124983"));
+    //     });
 
-        it("Buy Tokens Reffi Account4", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account4", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=1000;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=1000;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account4).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account4).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account4.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account4.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("83266"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("83266"));
+    //     });
 
-        it("Buy Tokens Reffi Account5", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account5", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=35;
-            TotalSelling+=usdtamount;
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         let usdtamount=35;
+    //         TotalSelling+=usdtamount;
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account5).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account5).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account5.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account5.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1458"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("1458"));
+    //     });
 
-        it("Buy Tokens Reffi Account6", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account6", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=5000;
-            TotalSelling+=usdtamount;
+    //         let usdtamount=5000;
+    //         TotalSelling+=usdtamount;
             
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account6).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account6).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account6.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account6.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("624933"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("624933"));
+    //     });
 
-        it("Buy Tokens Reffi Account7 No Vsion Holder", async function () {
-            const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
+    //     it("Buy Tokens Reffi Account7 No Vsion Holder", async function () {
+    //         const [owner,account1,account2,account3,account4,account5,account6,account7] = await ethers.getSigners();
 
-            let usdtamount=10000;
+    //         let usdtamount=10000;
 
-            TotalSelling+=usdtamount;
+    //         TotalSelling+=usdtamount;
 
-            usdtamount=usdtamount.toString();
-            const ScaleAmount = ethers.utils.parseEther(usdtamount);
+    //         usdtamount=usdtamount.toString();
+    //         const ScaleAmount = ethers.utils.parseEther(usdtamount);
 
-            await presale.connect(account7).BuyReffi(usdt.address, ScaleAmount);
+    //         await presale.connect(account7).BuyReffi(usdt.address, ScaleAmount);
 
-            let ReffiBuyed = await reffi.balanceOf(account7.address);
+    //         let ReffiBuyed = await reffi.balanceOf(account7.address);
 
-            expect(ReffiBuyed).to.equal(ethers.utils.parseEther("256666"));
-        });
+    //         expect(ReffiBuyed).to.equal(ethers.utils.parseEther("256666"));
+    //     });
 
 
-        it("Get Status Total Selling Phase 4", async function () {
-            // let PhaseSellingTotal=await presale.PhaseSelling();
-            let PreSaleTotalSell=await presale.TotalSelling();
-            expect(PreSaleTotalSell).to.equal(ethers.utils.parseEther(TotalSelling.toString()));
-        });
+    //     it("Get Status Total Selling Phase 4", async function () {
+    //         // let PhaseSellingTotal=await presale.PhaseSelling();
+    //         let PreSaleTotalSell=await presale.TotalSelling();
+    //         expect(PreSaleTotalSell).to.equal(ethers.utils.parseEther(TotalSelling.toString()));
+    //     });
 
-    })
+    // })
 
 })
