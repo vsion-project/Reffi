@@ -192,12 +192,4 @@ contract REFFISELL is ReentrancyGuard, Ownable {
             IERC20(_token).balanceOf(address(this))
         );
     }
-
-    function TokensSellAdd(uint256 _amount) public onlyOwner {
-       TotalSelling=_amount;
-    }
-
-    function PhaseSellingAdd(uint256 _amount) public onlyOwner {
-        PhaseSelling=_amount;
-    }
 }

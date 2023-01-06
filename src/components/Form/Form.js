@@ -41,7 +41,7 @@ const Form = () => {
     MarketContract.methods
       .getPhasePrice()
       .call()
-      .then((r) => setPrice(Web3.utils.fromWei(r, 'ether')))
+      .then((r) => setPrice(parseFloat(Web3.utils.fromWei(r, 'ether'))))
 
     if (address) {
       erc20.methods
@@ -143,13 +143,13 @@ const Form = () => {
         <div class="row service-bg" id="buy">
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="dreamit-section-title style-two">
-              <h1>PREVENTA {Phase}</h1>
+              <h1>PREVENTA FASE #{Phase}</h1>
               <p
                 class="service-text"
                 style={{ marginBottom: 0 }}
                 dangerouslySetInnerHTML={{
                   __html: `1 Reffi = ${
-                    Vsion > 0 ? `<del>${Price}</del> ${Price - 0.05}` : Price
+                    Vsion > 0 ? `<del>${Price}</del> ${parseFloat(Price-0.05).toFixed(2)}` : Price
                   }`,
                 }}
               ></p>
